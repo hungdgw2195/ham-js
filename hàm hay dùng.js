@@ -26,7 +26,18 @@ $('#toTop').click(function(event) {
     }, 500);
     return false;
 });
+  /* Scroll back to top
+-------------------------------------- */
+  $(window).scroll(function() {
+    var activePoint = $('#js-header').height();
+    var scrolltop = $(document).scrollTop() + window.innerHeight;
 
+    if ($(this).scrollTop() > activePoint + 100) {
+      $('#js-header').addClass('fixed');
+    } else {
+      $('#js-header').removeClass('fixed');
+    };
+  });
 
 /* Resize swap images
 -------------------------------------- */
@@ -231,3 +242,28 @@ $(window).resize(function() {
     equalheight('.sectionThumbnail .items');
 });
 
+  // modal
+  $(".js-modal").click(function() {
+    $(".modal_ykien").fadeIn(500);
+  });
+  $(".close").click(function() {
+    $(".modal_ykien").fadeOut(500);
+  });
+  $(document).click(function(e) {
+    if ($(e.target).is('#modal_ykien')) {
+      $('#modal_ykien').fadeOut(500);
+    }
+  });
+
+  //IE jumping fixed elements fix
+  if (navigator.userAgent.match(/Trident\/7\./)) { // if IE
+    $('body').on("mousewheel", function() {
+      //Remove default behavior
+      event.preventDefault();
+
+      //Scroll without smoothing
+      var wheelDelta = event.wheelDelta;
+      var currentScrollPosition = window.pageYOffset;
+      window.scrollTo(0, currentScrollPosition - wheelDelta);
+    });
+  }
