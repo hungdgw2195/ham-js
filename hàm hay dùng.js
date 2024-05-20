@@ -267,3 +267,52 @@ $(window).resize(function() {
       window.scrollTo(0, currentScrollPosition - wheelDelta);
     });
   }
+
+
+
+// page top
+function btnScrollTop(): void {
+    const seBackToTop: string = ".js-pagetop";
+    const seFooter: string = "footer";
+    const yTop: number = 0;
+    const pxInBackToTop: number = 180 + yTop;
+    const msBTTScroll: number = 1000;
+
+    const eBtt = $(seBackToTop);
+    const seFoot = $(seFooter);
+    const yDefBttBtn: number = parseInt(eBtt.css("bottom") || "0");
+    let isInBttBtn: boolean = false;
+    let isOverFooter: boolean = false;
+    // $(window).scroll(setBttPos).resize(setBttPos);
+
+    // function setBttPos(): void {
+    //   const y: number = $(window).scrollTop();
+    //   if (y > pxInBackToTop) {
+    //     if (!isInBttBtn) {
+    //       isInBttBtn = true;
+    //       eBtt.addClass("is-active");
+    //     }
+    //   } else {
+    //     if (isInBttBtn) {
+    //       isInBttBtn = false;
+    //       eBtt.removeClass("is-active");
+    //     }
+    //   }
+    //   if (seFoot.length > 0) {
+    //     const yf: number =
+    //       seFoot.offset()?.top + yDefBttBtn - y - $(window).height()!;
+    //     if (yf < 0 - 80) {
+    //       isOverFooter = true;
+    //       eBtt.stop().css("bottom", yDefBttBtn - yf - 80 + "px");
+    //     } else if (isOverFooter) {
+    //       isOverFooter = false;
+    //       eBtt.stop().css("bottom", yDefBttBtn + "px");
+    //     }
+    //   }
+    // }
+
+    $(".js-pagetop").click(function () {
+        $("html, body").stop().animate({ scrollTop: yTop }, msBTTScroll);
+        return false;
+    });
+}
